@@ -46,5 +46,7 @@ Here is a quick guide to some specifics about the flags:
 2. ```--mn``` sets the name of the job. It is used to create a unique model folder where the weights are stored and can be loaded from. The source and target language are appended to this name. It must remain uniform across stage 1 and stage 2.
 3. ```--lm``` is the name of the weights file to be loaded(which gets saved in the aforementioned folder). For final results, load ```model_best_test.pth```. Stage 1 models are saved as ```model_pretrained.pth```. To continue training from a saved model, load its weights and add the flag ```--ct```.
 4. ```--test_ds``` sets the dataset to be used in validation/test. While training, pass ```2016 val```(Multi30k) or ```valid```(WIT). For inference, pass ```2016 flickr```, ```2017 flickr``` or ```2017 mscoco``` for Multi30k and ```test``` for WIT. Also add the flag ```--test``` so that only inference is run for a saved model.
+5. To finetune an mBART on a dataset, simply pass ```--prefix_length 0```.
+6. To use images in inference, add the flags ```--noise_test --mask_prob 0``` to the inference command.
 
 If the code and/or method was useful to your work, please consider citing us!
