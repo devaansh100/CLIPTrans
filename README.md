@@ -7,11 +7,13 @@ Environment details coming soon.
 
 # Data
 
-All data should be organised in the ```data/``` directory. Specific details for each dataset coming soon.
+All data should be organised in the ```data/``` directory.
 
-## Multi30k
+## Multi30k 
 
-Download the images from the [Flickr30k](https://github.com/multi30k/dataset) and [MSCOCO](https://cocodataset.org/#download) website. For the exact list of images from MSCOCO used for inference, check 
+Download the images for [Flickr30k](https://github.com/multi30k/dataset/tree/master#visual-features) and the [MSCOCO test set](https://www.statmt.org/wmt17/multimodal-task.html) in the ```data/multi30k/images``` folder. You should have three tarballs for the images: ```flickr30k-images.tar.gz``` which will have the training, validation and Test2016 set; ```test_2017-flickr-images.gz``` for the MSCOCO set and ```images_mscoco.task1.tar.gz``` for the MSCOCO images.
+
+Now, simply execute ```setup_multi30k.sh``` to download the text data and organise the folders.
 
 ## WIT
 
