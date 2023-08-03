@@ -1,4 +1,4 @@
-name: valhalla
+name: cliptrans
 channels:
   - pytorch
   - nvidia
