@@ -11,7 +11,7 @@ All data should be organised in the ```data/``` directory.
 
 ## Multi30k 
 
-Download the images for [Flickr30k](https://github.com/multi30k/dataset/tree/master#visual-features) and the [MSCOCO test set](https://www.statmt.org/wmt17/multimodal-task.html) in the ```data/multi30k/images``` folder. You should have three tarballs for the images: ```flickr30k-images.tar.gz``` which will have the training, validation and Test2016 set; ```test_2017-flickr-images.gz``` for the MSCOCO set and ```images_mscoco.task1.tar.gz``` for the MSCOCO images.
+Download the images for [Flickr30k](https://github.com/multi30k/dataset/tree/master#visual-features) and the [MSCOCO test set](https://www.statmt.org/wmt17/multimodal-task.html) in the ```data/multi30k``` folder. You should have three tarballs for the images: ```flickr30k-images.tar.gz``` which will have the training, validation and Test2016 set; ```test_2017-flickr-images.gz``` for the MSCOCO set and ```images_mscoco.task1.tar.gz``` for the MSCOCO images.
 
 Now, simply execute ```setup_multi30k.sh``` to download the text data and organise the folders.
 
@@ -21,7 +21,7 @@ The WIT dataset used in our paper can be downloaded from [here](https://github.c
 ```bash
 python download_images.py $FOLDER_NAME $SPLIT
 ```
-where FOLDER_NAME can be one of [```es_fr```, ```en_ro```, ```en_fr```, ```en_es```, ```en_de```, ```en_af```, ```de_es```] and SPLIT can be one of [```train```, ```test```, ```valid```]. This will take a while. Also note that the downloading of images depends upon the availability of the image on the hosted service; due to which some variance in the result is to be expected.
+where ```FOLDER_NAME``` can be one of [```es_fr```, ```en_ro```, ```en_fr```, ```en_es```, ```en_de```, ```en_af```, ```de_es```] and ```SPLIT``` can be one of [```train```, ```test```, ```valid```]. This will take a while. Also note that the downloading of images depends upon the availability of the image on the hosted service; due to which some variance in the scores is to be expected.
 
 # Training
 
