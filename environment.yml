@@ -156,4 +156,4 @@ dependencies:
     - tokenizers==0.13.2
     - torch-poly-lr-decay==0.0.1
     - wcwidth==0.2.6
-prefix: /mmfs1/data/guptadm/.conda/envs/valhalla
+prefix: /mmfs1/data/guptadm/.conda/envs/cliptrans
