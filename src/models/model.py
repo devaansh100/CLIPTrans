@@ -4,7 +4,6 @@ import torch
 import torch.nn as nn
 import transformers
 from transformers import MBart50Tokenizer, MBartForConditionalGeneration
-# from gated_fusion import MBartForConditionalGeneration_GF
 from clip_comb import *
 from adapters import *
 from model_utils import *

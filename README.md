@@ -3,7 +3,15 @@ This repository is the official code implementation for the paper "Transferring 
 
 # Setup
 
-Environment details coming soon.
+Setup the repository with the following commands:
+```bash
+git clone --recursive git@github.com:devaansh100/CLIPTrans.git
+conda create cliptrans -f environment.yml
+conda activate cliptrans
+pip install -r requirements.txt
+cd transformers
+pip install -e .
+```
 
 # Data
 
