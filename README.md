@@ -11,7 +11,15 @@ All data should be organised in the ```data/``` directory. Specific details for 
 
 ## Multi30k
 
+Download the images from the [Flickr30k](https://github.com/multi30k/dataset) and [MSCOCO](https://cocodataset.org/#download) website. For the exact list of images from MSCOCO used for inference, check 
+
 ## WIT
+
+The WIT dataset used in our paper can be downloaded from [here](https://github.com/JerryYLi/valhalla-nmt/releases) into the ```data/wit``` folder. Once downloaded, unzip with ```tar -xvzf wit_mmt.tar.gz```. The images for each of these can be downloaded by running the following command:
+```bash
+python download_images.py $FOLDER_NAME $SPLIT
+```
+where FOLDER_NAME can be one of [```es_fr```, ```en_ro```, ```en_fr```, ```en_es```, ```en_de```, ```en_af```, ```de_es```] and SPLIT can be one of [```train```, ```test```, ```valid```]. This will take a while. Also note that the downloading of images depends upon the availability of the image on the hosted service; due to which some variance in the result is to be expected.
 
 # Training
 
@@ -50,3 +58,4 @@ Here is a quick guide to some specifics about the flags:
 6. To use images in inference, add the flags ```--noise_test --mask_prob 0``` to the inference command.
 
 If the code and/or method was useful to your work, please consider citing us!
+
