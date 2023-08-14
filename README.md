@@ -1,4 +1,4 @@
-# CLIPTrans
+# [CLIPTrans](https://devaansh100.github.io/projects/cliptrans/)
 This repository is the official code implementation for the paper "Transferring Visual Knowledge with Pre-trained Models for Multimodal Machine Translation", accepted at ICCV'23.
 
 # Setup
