@@ -68,4 +68,12 @@ Here is a quick guide to some specifics about the flags:
 6. To use images in inference, add the flags ```--noise_test --mask_prob 0``` to the inference command.
 
 If the code and/or method was useful to your work, please consider citing us!
+```code
+@article{gupta2023cliptrans,
+  author    = {Gupta, Devaansh and Kharbanda, Siddhant and Zhou, Jiawei and Li, Wanhua and Pfister, Hanspeter and Wei, Donglai},
+  title     = {Transferring Visual Knowledge with Pre-trained Models for Multimodal Machine Translation},
+  journal   = {ICCV},
+  year      = {2023},
+}
+```
 
