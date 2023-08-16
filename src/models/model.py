@@ -83,14 +83,14 @@ class CLIPTrans(nn.Module):
 		elif mode == 'test':
 			batch['mbart'].pop('labels')
 			if self.prefix_length > 0:
-				if self.fusion == 'context':
-					decoder_input_ids = (torch.ones(batch['mbart']['input_ids'].shape[0], 1) * 2).long().cuda()
-					decoder_inputs_embeds = self.mbart.model.decoder.embed_tokens(decoder_input_ids) * self.mbart.model.decoder.embed_scale
-					decoder_inputs_embeds = torch.cat((prefix_embeds, decoder_inputs_embeds), dim = 1) # Putting prefix_embeds before eos, because for decoder, eos is now start_token_id
-					batch['mbart']['decoder_inputs_embeds'] = decoder_inputs_embeds
-					batch['mbart']['decoder_attention_mask'] = torch.ones((decoder_inputs_embeds.shape[0], decoder_inputs_embeds.shape[1])).cuda()
-				else:
-					batch['mbart']['clip_embs'] = prefix_embeds
+				# if self.fusion == 'context':
+				decoder_input_ids = (torch.ones(batch['mbart']['input_ids'].shape[0], 1) * 2).long().cuda()
+				decoder_inputs_embeds = self.mbart.model.decoder.embed_tokens(decoder_input_ids) * self.mbart.model.decoder.embed_scale
+				decoder_inputs_embeds = torch.cat((prefix_embeds, decoder_inputs_embeds), dim = 1) # Putting prefix_embeds before eos, because for decoder, eos is now start_token_id
+				batch['mbart']['decoder_inputs_embeds'] = decoder_inputs_embeds
+				batch['mbart']['decoder_attention_mask'] = torch.ones((decoder_inputs_embeds.shape[0], decoder_inputs_embeds.shape[1])).cuda()
+				# else:
+				# 	batch['mbart']['clip_embs'] = prefix_embeds
 			outputs = self.mbart.generate(**batch['mbart'], forced_bos_token_id = self.tokenizer.lang_code_to_id[self.target_lang], max_new_tokens = 60)
 		return outputs
 

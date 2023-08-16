@@ -92,8 +92,9 @@ def main(params):
 
     if not params.unfreeze_clip:
         del model.clip # If CLIP is always frozen, we can remove it from memory since all the data is preprocessed
-        if is_main_process():
-            print('Also finetuning CLIP.')
+    elif is_main_process():
+        print('Also finetuning CLIP.')
+
     if params.num_gpus > 1:
         local_rank = int(os.environ['LOCAL_RANK'])
         model = nn.parallel.DistributedDataParallel(model, device_ids = [local_rank], output_device = [local_rank], find_unused_parameters=True)
