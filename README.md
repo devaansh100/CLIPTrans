@@ -2,7 +2,7 @@
 [[Project page]](https://devaansh100.github.io/projects/cliptrans/) [[arxiv]](https://arxiv.org/abs/2308.15226)
 
 ![Training Pipeline GIF](media/training.gif)
-Official implementation for the paper "CLIPTrans: Transferring Visual Knowledge with Pre-trained Models for Multimodal Machine Translation", published at ICCV'23. The aim of the paper is to leverage existing pre-trained models(multilingual mBART and multimodal M-CLIP) for multimodal machine translation. More generally, it proposes a framework(pictured below) for multilingual generative tasks using multimodal data.
+Official implementation for the paper "CLIPTrans: Transferring Visual Knowledge with Pre-trained Models for Multimodal Machine Translation", published at ICCV'23. The aim of the paper is to leverage existing pre-trained models(multilingual mBART and multimodal M-CLIP) for multimodal machine translation. More generally, it proposes a framework(pictured above) for multilingual generative tasks using multimodal data.
 
 # Setup
 
