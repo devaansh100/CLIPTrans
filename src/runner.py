@@ -13,6 +13,7 @@ import math
 from model_utils import get_lang_code
 import warnings
 import evaluate
+import glob
 
 class Runner:
     def __init__(self, train_dl, test_dl, params):
@@ -21,6 +22,7 @@ class Runner:
         self.update_count = params.update_count
         self.test_after = params.test_after * self.update_count
         self.is_pretraining = params.stage in ['caption', 'text_recon']
+        self.meteor = evaluate.load('meteor') # The only reason this is in __init__ is to remove the nltk download info from every epoch
 
     def save_model(self, model, name, epoch):
         checkpoint = {
@@ -33,14 +35,21 @@ class Runner:
         torch.save(checkpoint, name)
 
     def load_model(self, params, model, name, load_opt):
-        checkpoint = torch.load(name, map_location = torch.device('cpu'))
+        if not os.path.exists(name) and os.path.exists(name.replace('.pth', '_1.pth')):
+            model_names = sorted(glob.glob(name.replace('.pth', '*')))
+            checkpoint = {'model': torch.load(model_names[0], map_location = torch.device('cpu')), 'epoch': 0, 'best_bleu_test': 0}
+            for model_name in model_names[1:]:
+                checkpoint['model'].update(torch.load(model_name, map_location = torch.device('cpu')))
+        else:
+            checkpoint = torch.load(name, map_location = torch.device('cpu'))
         if params.num_gpus == 1:
             from collections import OrderedDict
             new_state_dict = OrderedDict()
             for k, v in checkpoint['model'].items():
-                name = k[7:] # remove 'module.' of DataParallel/DistributedDataParallel
+                name = k[7:] if 'module' in k[:7] else k # remove 'module.' of DataParallel/DistributedDataParallel
                 new_state_dict[name] = v
             checkpoint['model'] = new_state_dict
+        
         model.load_state_dict(checkpoint['model'], strict = False)
         
         if load_opt:
@@ -91,7 +100,6 @@ class Runner:
         test_loss = 0.0
         translated_sentences, target_sentences = [], []
         tokenizer.tgt_lang = get_lang_code(params.tgt_lang)
-        # meteor = evaluate.load('meteor')
         with torch.no_grad():
             for i, batch in enumerate(tqdm(self.test_dl, desc = f'Epoch {epoch}', disable = not is_main_process())):
                 batch['clip'] = send_to_cuda(batch['clip'])
@@ -118,7 +126,7 @@ class Runner:
 
         if is_main_process():
             bleu_score = sacrebleu.corpus_bleu(translated_sentences, [target_sentences]).score
-            meteor_score = 0 # meteor.compute(predictions = translated_sentences, references = target_sentences)['meteor']
+            meteor_score = self.meteor.compute(predictions = translated_sentences, references = target_sentences)['meteor']
             print(f'Epoch {epoch}; Test BLEU: {bleu_score}; Test METEOR: {100 * meteor_score}')
             print('------------------------------------------')
             for i, (tra, tgt) in enumerate(zip(translated_sentences[0:5], target_sentences[0:5])):
