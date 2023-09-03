@@ -1,5 +1,8 @@
-# [CLIPTrans](https://devaansh100.github.io/projects/cliptrans/)
-This repository is the official code implementation for the paper "Transferring Visual Knowledge with Pre-trained Models for Multimodal Machine Translation", published at ICCV'23.
+# CLIPTrans
+[[Project page]](https://devaansh100.github.io/projects/cliptrans/) [[arxiv]](https://arxiv.org/abs/2308.15226)
+Official implementation for the paper "CLIPTrans: Transferring Visual Knowledge with Pre-trained Models for Multimodal Machine Translation", published at ICCV'23. The aim of the paper is to leverage existing pre-trained models(multilingual mBART and multimodal M-CLIP) for multimodal machine translation. More generally, it proposes a framework(pictured below) for multilingual generative tasks using multimodal data.
+
+![Training Pipeline GIF](media/training.gif)
 
 # Setup
 
@@ -69,11 +72,10 @@ Here is a quick guide to some specifics about the flags:
 
 If the code and/or method was useful to your work, please consider citing us!
 ```code
-@article{gupta2023cliptrans,
-  author    = {Gupta, Devaansh and Kharbanda, Siddhant and Zhou, Jiawei and Li, Wanhua and Pfister, Hanspeter and Wei, Donglai},
-  title     = {Transferring Visual Knowledge with Pre-trained Models for Multimodal Machine Translation},
-  journal   = {ICCV},
-  year      = {2023},
-}
-```
+@inproceedings {gupta2023cliptrans,
+    title={CLIPTrans: Transferring Visual Knowledge with Pre-trained Models for Multimodal Machine Translation},
+    author={Gupta, Devaansh and Kharbanda, Siddhant and Zhou, Jiawei and Li, Wanhua and Pfister, Hanspeter and Wei, Donglai},
+    booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+    year={2023}
+}```
 
