@@ -67,6 +67,7 @@ python src/main.py --num_gpus 1 --mn multi30k --prefix_length 10 --bs 32 --updat
 python -m torch.distributed.run --nproc_per_node 4 src/main.py --num_gpus 4 --mn multi30k --prefix_length 10 --bs 32 --update_count 4 --lr 1e-5 --test_ds 2016 val --stage translate --tgt_lang fr --lm model_pretrained.pth
 ```
 
+## Flags
 Here is a quick guide to some specifics about the flags:
 1. ```--stage``` denotes the training task. There are four choices available which are detailed in the table below. These affect the training task, and inference is modified appropriately:
 
