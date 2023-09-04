@@ -34,6 +34,19 @@ python download_images.py $FOLDER_NAME $SPLIT
 ```
 where ```FOLDER_NAME``` can be one of [```es_fr```, ```en_ro```, ```en_fr```, ```en_es```, ```en_de```, ```en_af```, ```de_es```] and ```SPLIT``` can be one of [```train```, ```test```, ```valid```]. This will take a while. Also note that the downloading of images depends upon the availability of the image on the hosted service; due to which some variance in the scores is to be expected.
 
+# Pre-trained Models and Inference
+
+The sharded pre-trained models can be found [here](https://drive.google.com/drive/folders/1TqqSdlmZxXRgnMc5Gg7ijoUz56gzWQeq?usp=sharing). For a particular model, download both the shards and place them in ```models/multi30k-en-de```(for example). Check point 2 [below](##Flags) for more details on the flags and the naming scheme. While loading these models, the code will automatically detect the shards and use them. Inference can be run with the command:
+
+```bash
+python src/main.py --num_gpus 1 --mn multi30k --src_lang en --tgt_lang fr --prefix_length 10 --bs 32 --test_ds 2016 flickr --stage translate --test --lm model_best_test.pth
+```
+
+or for a mulit-GPU setup:
+```bash
+python -m torch.distributed.run --nproc_per_node 4 src/main.py --num_gpus 4  --mn multi30k --src_lang en --tgt_lang fr --prefix_length 10 --bs 32 --test_ds 2016 flickr --stage translate --test --lm model_best_test.pth
+```
+
 # Training
 
 Training is done in two stages. To run the first stage(captioning), the following commands can be used, depending on the number of available GPUs:
