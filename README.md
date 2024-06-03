@@ -9,7 +9,7 @@ Official implementation for the paper "CLIPTrans: Transferring Visual Knowledge 
 Setup the repository with the following commands:
 ```bash
 git clone --recursive git@github.com:devaansh100/CLIPTrans.git
-conda create cliptrans -f environment.yml
+conda env create --file environment.yml
 conda activate cliptrans
 pip install -r requirements.txt
 cd transformers
